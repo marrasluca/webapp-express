@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { index, show, destroy } from '../controllers/movieController'
+import { index, show, destroy } from '../controllers/movieController.js'
 
 const router = express.Router()
 
