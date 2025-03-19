@@ -17,14 +17,14 @@ function show(req, res){
 
     const movieSql = 'SELECT * FROM movies WHERE id=?'
 
-    const reviewsSql = 'SELECT * FROM reviews WHERE id=?'
+    const reviewsSql = 'SELECT * FROM reviews WHERE movie_id=?'
 
     connection.query( movieSql, [id], (err,results) => {
             if(err) return res.status(500).json({
             error: 'Errore lato Server Show function'
     })
 
-    if( results.lenght === 0 ) return res.status(404).json({
+    if( results.length === 0 ) return res.status(404).json({
         error: 'Movie not found'
     })
 
@@ -51,7 +51,7 @@ function destroy(req, res){
             error: 'Errore lato Server Destroy function'
     })
         
-    if( results.lenght === 0 ) return res.status(404).json({
+    if( results.length === 0 ) return res.status(404).json({
         error: 'Movie not found'
     })
 
