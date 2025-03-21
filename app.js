@@ -3,10 +3,28 @@
 
 import express from 'express';
 
-import movieRouter from'./routers/movieRouter.js'
+
 
 const app = express();
-const port = 3002;
+const port = 3001;
+
+import movieRouter from'./routers/movieRouter.js'
+import imagePathMiddleware from "./middlewares/imagePath.js";
+
+//middleware per gestire asset statici
+app.use( express.static('public') )
+
+//middleware per gestire le informazioni del body
+app.use( express.json() )
+
+//gestione delle immagini
+app.use( imagePathMiddleware )
+
+//rotta di test
+app.get( '/', (req, res) => {
+    res.send( 'Server movie tutto a posto' )
+})
+
 
 
 app.use( '/movies', movieRouter)

@@ -8,7 +8,18 @@ function index(req, res){
         error: 'Errore lato Server Index function'
     })
 
-    res.json(results);
+    // res.json(results);
+
+    const movies = results.map( movie => {
+        return {
+            ...movie,
+            image: req.imagePath + book.image
+        }
+    })
+
+    res.json(movies)
+
+
   })
 }
 
@@ -51,10 +62,6 @@ function destroy(req, res){
             error: 'Errore lato Server Destroy function'
     })
         
-    if( results.length === 0 ) return res.status(404).json({
-        error: 'Movie not found'
-    })
-
     res.sendStatus(204)
 
     })
