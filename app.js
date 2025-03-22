@@ -6,10 +6,20 @@ import express from 'express';
 
 
 const app = express();
+import cors from 'cors';
 const port = 3001;
 
 import movieRouter from'./routers/movieRouter.js'
 import imagePathMiddleware from "./middlewares/imagePath.js";
+
+
+//middleware cors
+app.use( 
+    cors({
+        origin: process.env.FRONTEND_APP,
+    }
+
+));
 
 //middleware per gestire asset statici
 app.use( express.static('public') )
