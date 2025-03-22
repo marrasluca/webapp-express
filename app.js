@@ -17,9 +17,8 @@ import imagePathMiddleware from "./middlewares/imagePath.js";
 app.use( 
     cors({
         origin: process.env.FRONTEND_APP,
-    }
-
-));
+    })
+);
 
 //middleware per gestire asset statici
 app.use( express.static('public') )
