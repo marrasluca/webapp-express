@@ -93,6 +93,31 @@ function storeReview(req, res){
 
 }
 
+function store(req, res){
+    const {title, author, abstract} = req.body
+
+    const imageName = `${req.file.filename}`
+
+     const sql = 'INSERT INTO movie (title, author, image, abstract) VALUES (?,?,?,?)'
+
+
+     connection.query( sql, [title, author, imageName, abstract], ( err, results ) => {
+        if(err) return res.status(500).json({
+            error: 'Database error Store'
+    })
+
+    res.status(201)
+    res.json({
+        status: "success",
+        message: 'Film creato con successo',
+        id: results.insertId
+    })
+
+     })
+
+
+}
+
 export{
-    index, show, destroy, storeReview
+    index, show, destroy, storeReview, store
 }
